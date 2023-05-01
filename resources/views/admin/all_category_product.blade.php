@@ -28,6 +28,14 @@
         </div>
       </div>
       <div class="table-responsive">
+        <?php
+          $message = Session::get('message');
+          if (isset($message)) {
+              echo $message;
+              Session::put('message', null);
+          }    
+        ?>
+
         <table class="table table-striped b-t b-light">
           <thead>
             <tr>
@@ -51,15 +59,26 @@
                 <span class="text-ellipsis">
                     <?php
                         if ($cate_product->category_status == 0) {
-                            echo 'Ẩn';
+                    ?>
+                        <a href="{{URL::to('/active-category-product/'.$cate_product->category_id)}}">Đang ẩn</a>
+                    <?php
                         } else {
-                            echo 'Hiển';
+                    ?>
+                    
+                        <a href="{{URL::to('/unactive-category-product/'.$cate_product->category_id)}}">Đang hiện</a>
+
+                    <?php
                         }
                     ?>
                 </span>
               </td>
               <td>
-                <a href="" class="active" ui-toggle-class=""><i class="fa fa-pencil text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                <a href="{{URL::to('/edit-category-product/'.$cate_product->category_id)}}" class="active" ui-toggle-class="">
+                  <i class="fa fa-pencil text-success text-active"></i>
+                </a>
+                <a href="{{URL::to('/delete-category-product/'.$cate_product->category_id)}}">
+                  <i class="fa fa-times text-danger text"></i>
+                </a>
               </td>
             </tr>
             @endforeach

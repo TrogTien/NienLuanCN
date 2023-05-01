@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả danh mục</label>
-                            <textarea name="category_product_desciption" class="form-control" id="exampleInputPassword1" placeholder="Mô tả danh mục">
+                            <textarea name="category_product_description" class="form-control" id="exampleInputPassword1" placeholder="Mô tả danh mục">
                             </textarea>
                         </div>
                         <div class="form-group">
