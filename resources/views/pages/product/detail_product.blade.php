@@ -37,14 +37,14 @@
             <h2>{{$value->product_name}}</h2>
             <p>Web ID: 1089772</p>
             <img src="images/product-details/rating.png" alt="" />
-            <form action="" method="POST">
-                {{ csrf_token() }}
+            <form action="{{URL::to('/save-cart')}}" method="post">
+                {{ csrf_field() }}
                 <span>
                     <span>{{$value->product_price}} $</span>
                     <label>Quantity:</label>
                     <input name="quantity" type="number" min="1" value="1" />
                     <input name="product_id_hidden" type="hidden" value="{{$value->product_id}}" />
-                    <button type="button" class="btn btn-fefault cart">
+                    <button type="submit" class="btn btn-fefault cart">
                         <i class="fa fa-shopping-cart"></i>
                         Add to cart
                     </button>
