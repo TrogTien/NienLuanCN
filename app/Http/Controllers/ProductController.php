@@ -141,4 +141,14 @@ class ProductController extends Controller
         Session::put('message', 'Xóa sản phẩm thành công');
         return Redirect::to('/all-product');
     }
+
+    //Trang chu
+    public function detail_product($productid) {
+        $categorys = DB::table('tbl_category_product')->where('category_status',1)->orderby('category_id','desc')->get();
+        $brands = DB::table('tbl_brand')->where('brand_status',1)->orderby('brand_id','desc')->get();
+
+        return view('pages.product.detail_product')
+            ->with('categorys',$categorys)
+            ->with('brands',$brands);
+    }
 }

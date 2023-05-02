@@ -10,9 +10,11 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{('public/uploads/product/'.$product->product_image)}}" alt="" />
+											<a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}">
+												<img src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
+												<p>{{$product->product_name}}</p>
+											</a>
 											<h2>{{$product->product_price}} $</h2>
-											<p>{{$product->product_name}}</p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										

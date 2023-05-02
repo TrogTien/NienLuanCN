@@ -15,6 +15,15 @@
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
 
+//Trang chu 
+Route::get('/danh-muc/{category_id}', 'CategoryProduct@show_category_home');
+
+Route::get('/thuong-hieu/{category_id}', 'BrandProduct@show_brand_home');
+
+Route::get('/chi-tiet-san-pham/{product_id}', 'ProductController@detail_product');
+
+
+
 //Backend
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard', 'AdminController@show_dashboard');
