@@ -72,6 +72,10 @@ Route::post('/update-cart-quantity', 'CartController@update_cart_quantity');
 Route::get('/show-cart', 'CartController@show_cart');
 Route::get('/delete-to-cart/{rowId}', 'CartController@delete_to_cart');
 
+//Checkout
+Route::get('/login-checkout', 'CheckoutController@login_checkout');
+
+
 
 
  
