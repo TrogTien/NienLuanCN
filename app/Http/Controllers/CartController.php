@@ -9,6 +9,8 @@ use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Cart;
+session_start();
+
 
 class CartController extends Controller
 {
