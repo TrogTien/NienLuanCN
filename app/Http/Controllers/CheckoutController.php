@@ -36,6 +36,48 @@ class CheckoutController extends Controller
     }
 
     public function checkout() {
-        echo 'Trang checkout';
+        $categorys = DB::table('tbl_category_product')->where('category_status',1)->orderby('category_id','desc')->get();
+        $brands = DB::table('tbl_brand')->where('brand_status',1)->orderby('brand_id','desc')->get();
+
+
+        return view('pages.checkout.checkout')
+            ->with('categorys',$categorys)
+            ->with('brands',$brands);
     }
+
+    public function save_checkout(Request $request) {
+        $data = array();
+        $data['shipping_name'] = $request->shipping_name;
+        $data['shipping_email'] = $request->shipping_email;
+        $data['shipping_address'] = $request->shipping_address;
+        $data['shipping_phone'] = $request->shipping_phone;
+        $data['shipping_note'] = $request->shipping_note;
+
+        $shipping_id = DB::table('tbl_shipping')->insertGetId($data);
+
+        Session::put('shipping_id',$shipping_id);
+
+        return Redirect::to('/payment');
+    }
+
+    public function payment() {
+
+    }
+
+    public function logout_customer() {
+        Session::flush();
+        return Redirect::to('login-checkout');
+    }
+
+    public function login_customer(Request $request) {
+        $email = $request->email;
+        $password = md5($request->password);
+        
+        $result = DB::table('tbl_customer')->where('customer_email',$email)->where('customer_password',$password)->first();
+
+        Session::put('customer_id',$result->customer_id);
+
+        return Redirect::to('/checkout');
+    }
+
 }
