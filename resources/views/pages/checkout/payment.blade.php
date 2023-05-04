@@ -76,7 +76,7 @@
             {{ csrf_field() }}
             <div class="payment-options">
                     <span>
-                        <label><input name="payment_option" value="ATM" type="checkbox"> Thanh toán thẻ ATM</label>
+                        <label><input name="payment_option" value="chuyen_khoan" type="checkbox"> Chuyển khoản</label>
                     </span>
                     <span>
                         <label><input name="payment_option" value="tien_mat" type="checkbox"> Thanh toán tiền mặt</label>

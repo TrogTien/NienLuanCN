@@ -13,6 +13,14 @@ session_start();
 
 class CheckoutController extends Controller
 {
+    public function authLogin() {
+        $admin_id = Session::get('admin_id');
+        if (isset($admin_id)) {
+            return Redirect::to('dashboard');
+        } else {
+            return Redirect::to('admin')->send();
+        }
+    }
     public function login_checkout() {
         $categorys = DB::table('tbl_category_product')->where('category_status',1)->orderby('category_id','desc')->get();
         $brands = DB::table('tbl_brand')->where('brand_status',1)->orderby('brand_id','desc')->get();
@@ -117,13 +125,31 @@ class CheckoutController extends Controller
             
         }
 
-        if ($data['payment_method'] == 'ATM') {
-            echo 'Thanh toán thẻ ATM';
+        if ($data['payment_method'] == 'chuyen_khoan') {
+            Cart::destroy();
+            echo 'Chuyển khoản';
         } else  {
-            echo 'Tiền mặt';
+            Cart::destroy();
+            echo 'Thanh toán khi nhận hàng';
         } 
 
         return Redirect::to('/payment');
+    }
 
+    public function manage_order() {
+        $this->authLogin();
+
+        $all_order = DB::table('tbl_order')
+        ->join('tbl_customer','tbl_customer.customer_id','=','tbl_order.customer_id')
+        ->select('tbl_order.*','tbl_customer.customer_name')
+        ->orderby('tbl_order.order_id','desc')->get();
+        $manager_order = view('admin.manage_order')->with('all_order',$all_order);
+        return view('admin_layout')->with('admin.manage_order', $manager_order);
+
+        
+    }
+
+    public function view_order($orderId) {
+        return view('admin.view_order');
     }
 }
