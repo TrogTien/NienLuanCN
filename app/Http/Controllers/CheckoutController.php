@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
-
+use Cart;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -61,7 +61,13 @@ class CheckoutController extends Controller
     }
 
     public function payment() {
+        $categorys = DB::table('tbl_category_product')->where('category_status',1)->orderby('category_id','desc')->get();
+        $brands = DB::table('tbl_brand')->where('brand_status',1)->orderby('brand_id','desc')->get();
 
+
+        return view('pages.checkout.payment')
+            ->with('categorys',$categorys)
+            ->with('brands',$brands);
     }
 
     public function logout_customer() {
@@ -80,4 +86,44 @@ class CheckoutController extends Controller
         return Redirect::to('/checkout');
     }
 
+    public function order_place(Request $request) {
+        //insert payment_method
+        $data = array();
+        $data['payment_method'] = $request->payment_option;
+        $data['payment_status'] = 'Đang chờ xử lý';
+
+        $payment_id = DB::table('tbl_payment')->insertGetId($data);
+
+        //insert order
+        $order_data = array();
+        $order_data['customer_id'] = Session::get('customer_id');
+        $order_data['shipping_id'] = Session::get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = Cart::total();
+        $order_data['order_status'] = 'Đang chờ xử lý';
+
+        $order_id = DB::table('tbl_order')->insertGetId($order_data);
+
+        //insert order_details
+        $content = Cart::content();
+        foreach ($content as $value) {
+            $order_details_data = array();
+            $order_details_data['order_id'] = $order_id;
+            $order_details_data['product_id'] = $value->id;
+            $order_details_data['product_name'] = $value->name;
+            $order_details_data['product_price'] = $value->price;
+            $order_details_data['product_sales_quantity'] = $value->qty;
+            DB::table('tbl_order_details')->insert($order_details_data);
+            
+        }
+
+        if ($data['payment_method'] == 'ATM') {
+            echo 'Thanh toán thẻ ATM';
+        } else  {
+            echo 'Tiền mặt';
+        } 
+
+        return Redirect::to('/payment');
+
+    }
 }

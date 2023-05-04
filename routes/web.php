@@ -80,6 +80,7 @@ Route::get('/logout-customer', 'CheckoutController@logout_customer');
 Route::post('/login-customer', 'CheckoutController@login_customer');
 
 Route::post('/add-customer', 'CheckoutController@add_customer');
+Route::post('/order-place', 'CheckoutController@order_place');
 Route::get('/checkout', 'CheckoutController@checkout');
 Route::post('/save-checkout', 'CheckoutController@save_checkout');
 Route::get('/payment', 'CheckoutController@payment');

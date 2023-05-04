@@ -25,6 +25,7 @@
 </head><!--/head-->
 
 <body>
+	
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
 			<div class="container">
@@ -89,15 +90,20 @@
 								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
 								<?php 
 									$customer_id = Session::get('customer_id');
+									$shipping_id = Session::get('shipping_id');
 									
-									if (isset($customer_id)) {
+									if (isset($customer_id) && $shipping_id == null) {
 								?>
 									<li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
 								<?php
+									} elseif (isset($customer_id) && isset($shipping_id)) {
+								?>
+									<li><a href="{{URL::to('/payment')}}"><i class="fa fa-lock"></i> Thanh toán</a></li>
+								<?php 
 									} else {
 								?>
 									<li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-lock"></i> Thanh toán</a></li>
-								<?php 
+								<?php
 									}
 								?>
 								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>

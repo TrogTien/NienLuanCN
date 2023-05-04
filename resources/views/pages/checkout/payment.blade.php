@@ -6,8 +6,14 @@
         <div class="breadcrumbs">
             <ol class="breadcrumb">
               <li><a href="{{URL::to('/')}}">Trang chủ</a></li>
-              <li class="active">Shopping Cart</li>
+              <li class="active">Thanh toán giỏ hàng</li>
             </ol>
+        </div><!--/breadcrums-->
+
+
+        
+        <div class="review-payment">
+            <h2>Xem lại giỏ hàng</h2>
         </div>
         <div class="table-responsive cart_info">
             <?php
@@ -65,45 +71,20 @@
                 </tbody>
             </table>
         </div>
+        <h4 style="margin: 30px 0">Chọn hình thức thanh toán</h4>
+        <form action="{{URL::to('/order-place')}}" method="POST">
+            {{ csrf_field() }}
+            <div class="payment-options">
+                    <span>
+                        <label><input name="payment_option" value="ATM" type="checkbox"> Thanh toán thẻ ATM</label>
+                    </span>
+                    <span>
+                        <label><input name="payment_option" value="tien_mat" type="checkbox"> Thanh toán tiền mặt</label>
+                    </span>
+                    <input type="submit" value="Đặt hàng" class="btn btn-primary btn-sm">
+            </div>
+        </form>
     </div>
 </section> <!--/#cart_items-->
-<section id="do_action">
-    <div class="container">
-        <div class="heading">
-            <h3>What would you like to do next?</h3>
-            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-        </div>
-        <div class="row">
-            
-            <div class="col-sm-6">
-                <div class="total_area">
-                    <ul>
-                        <li>Tổng <span>{{Cart::priceTotal(0)}}</span></li>
-                        <li>Thuế <span>{{Cart::tax(0)}}</span></li>
-                        <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Thành tiền <span>{{Cart::total(0)}}</span></li>
-                    </ul>
-                    <?php 
-                        $customer_id = Session::get('customer_id');
-						$shipping_id = Session::get('shipping_id');
-                        
-                        if (isset($customer_id) && $shipping_id == null) {
-                    ?>
-                        <a class="btn btn-default check_out" href="{{URL::to('/checkout')}}">Thanh toán</a>
-                        <?php
-                        } elseif (isset($customer_id) && isset($shipping_id)) {
-                    ?>
-                        <a class="btn btn-default check_out" href="{{URL::to('/payment')}}">Thanh toán</a>
-                        <?php 
-                        } else {
-                    ?>
-                        <a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Thanh toán</a>
-                    <?php
-                        }
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section><!--/#do_action-->
+
 @endsection
