@@ -14,6 +14,7 @@
 //Frontend
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
+Route::post('/search', 'HomeController@search');
 
 //Trang chu 
 Route::get('/danh-muc/{category_id}', 'CategoryProduct@show_category_home');
