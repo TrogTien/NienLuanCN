@@ -3,12 +3,7 @@
     
 <section id="cart_items">
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-              <li><a href="{{URL::to('/')}}">Trang chủ</a></li>
-              <li class="active">Shopping Cart</li>
-            </ol>
-        </div>
+       
         <div class="table-responsive cart_info">
             <?php
                 $content = Cart::content();
@@ -16,8 +11,8 @@
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
-                        <td class="name">Ảnh</td>
-                        <td class="image">Tên</td>
+                        <td class="image">Ảnh</td>
+                        <td class="name">Tên</td>
                         <td class="price">Giá</td>
                         <td class="quantity">Số lượng</td>
                         <td class="total">Thành tiền</td>
@@ -29,13 +24,13 @@
                         
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="{{URL::to('public/uploads/product/'.$value->options->image)}}" width="50"  alt=""></a>
+                            <a href=""><img src="{{URL::to('public/uploads/product/'.$value->options->image)}}" width="70px"  alt=""></a>
                         </td>
                         <td class="cart_description">
                             <h4><a href="">{{$value->name}}</a></h4>
                         </td>
                         <td class="cart_price">
-                            <p>{{$value->price}}</p>
+                            <p>{{$value->price}} $</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">

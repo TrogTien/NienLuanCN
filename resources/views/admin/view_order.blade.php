@@ -21,14 +21,14 @@
             <tr>
               
               <th>Tên người mua</th>
-              <th>Địa chỉ</th>
+              <th>Số điện thoại</th>
             </tr>
           </thead>
           <tbody>
                 
             <tr>
-              <td></td>
-              <td></td>
+              <td>{{$order_by_id[0]->customer_name}}</td>
+              <td>{{$order_by_id[0]->customer_phone}}</td>
               
             </tr>
             
@@ -59,15 +59,17 @@
           <thead>
             <tr>
               
-              <th>Tên người mua</th>
+              <th>Tên người nhận</th>
               <th>Địa chỉ</th>
+              <th>Số điện thoại</th>
             </tr>
           </thead>
           <tbody>
                 
             <tr>
-              <td></td>
-              <td></td>
+              <td>{{$order_by_id[0]->shipping_name}}</td>
+              <td>{{$order_by_id[0]->shipping_address}}</td>
+              <td>{{$order_by_id[0]->shipping_phone}}</td>
               
             </tr>
             
@@ -84,27 +86,7 @@
       <div class="panel-heading">
         Chi tiết đơn hàng
       </div>
-      <div class="row w3-res-tb">
-        <div class="col-sm-5 m-b-xs">
-          <select class="input-sm form-control w-sm inline v-middle">
-            <option value="0">Bulk action</option>
-            <option value="1">Delete selected</option>
-            <option value="2">Bulk edit</option>
-            <option value="3">Export</option>
-          </select>
-          <button class="btn btn-sm btn-default">Apply</button>                
-        </div>
-        <div class="col-sm-4">
-        </div>
-        <div class="col-sm-3">
-          <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div>
+      
       <div class="table-responsive">
         <?php
           $message = Session::get('message');
@@ -117,56 +99,36 @@
         <table class="table table-striped b-t b-light">
           <thead>
             <tr>
-              <th style="width:20px;">
-                <label class="i-checks m-b-none">
-                  <input type="checkbox"><i></i>
-                </label>
-              </th>
-              <th>Tên người mua</th>
-              <th>Tổng giá tiền</th>
-              <th>Tình trạng</th>
-              <th style="width:30px;"></th>
+             
+              <th>Tên sản phẩn</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Tổng tiền</th>
+              <th>Thuế 10%</th>
             </tr>
           </thead>
           <tbody>
-                
+            @foreach ($order_by_id as $value)
+                 
             <tr>
-              <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <a href="" class="active" ui-toggle-class="">
-                  <i class="fa fa-pencil text-success text-active"></i>
-                </a>
-                <a href="" onclick="return confirm('Bạn có muốn xóa không?')">
-                  <i class="fa fa-times text-danger text"></i>
-                </a>
+              <td>{{$value->product_name}}</td>
+              <td>{{$value->product_sales_quantity}}</td>
+              <td>{{$value->product_price}}</td>
+              <td>{{$value->product_price * $value->product_sales_quantity}} $</td> 
+              <td>{{$value->product_price * $value->product_sales_quantity /10}} $</td> 
+              
+            </tr>
+            @endforeach   
+            <tr>
+              <td class="text-center danger" colspan="5">
+                <h3>Tổng cộng: {{$order_by_id[0]->order_total}} $</h3>
               </td>
             </tr>
-            
             
           </tbody>
         </table>
       </div>
-      <footer class="panel-footer">
-        <div class="row">
-          
-          <div class="col-sm-5 text-center">
-            <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-          </div>
-          <div class="col-sm-7 text-right text-center-xs">                
-            <ul class="pagination pagination-sm m-t-none m-b-none">
-              <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-              <li><a href="">1</a></li>
-              <li><a href="">2</a></li>
-              <li><a href="">3</a></li>
-              <li><a href="">4</a></li>
-              <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      
     </div>
 </div>
 

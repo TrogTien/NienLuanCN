@@ -17,7 +17,7 @@ class TblPayment extends Migration
             $table->increments('payment_id');
             $table->string('payment_method');
             $table->integer('payment_status');
-            $table->timestamps(1);
+            $table->timestamps();
         });
     }
 

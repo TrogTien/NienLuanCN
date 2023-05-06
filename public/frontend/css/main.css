@@ -1596,7 +1596,7 @@ h2.title {
 
 
 #cart_items .cart_info .cart_description h4 {
-  margin-bottom: 0
+  margin-bottom: 20px;
 }
 
 #cart_items .cart_info .cart_description h4 a {
@@ -1895,6 +1895,9 @@ h2.title {
   width: 47%
 }
 
+.container {
+  max-width: 1000px ;
+}
 
 .shopper-info > form > input, 
 .form-two > form > select, 
