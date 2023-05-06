@@ -78,6 +78,16 @@ class CheckoutController extends Controller
             ->with('brands',$brands);
     }
 
+    public function checkout_success() {
+        $categorys = DB::table('tbl_category_product')->where('category_status',1)->orderby('category_id','desc')->get();
+        $brands = DB::table('tbl_brand')->where('brand_status',1)->orderby('brand_id','desc')->get();
+
+
+        return view('pages.checkout.success')
+            ->with('categorys',$categorys)
+            ->with('brands',$brands);
+    }
+
     public function logout_customer() {
         Session::flush();
         return Redirect::to('login-checkout');

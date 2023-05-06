@@ -73,10 +73,10 @@
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
-                        <li>Tổng <span>{{Cart::priceTotal(0)}}</span></li>
-                        <li>Thuế <span>{{Cart::tax(0)}}</span></li>
+                        <li>Tổng <span>{{Cart::priceTotal(0)}} $</span></li>
+                        <li>Thuế <span>{{Cart::tax(0)}} $ (10%)</span></li>
                         <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Thành tiền <span>{{Cart::total(0)}}</span></li>
+                        <li>Thành tiền <span>{{Cart::total(0)}} $</span></li>
                     </ul>
                     <?php 
                         $customer_id = Session::get('customer_id');

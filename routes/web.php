@@ -84,6 +84,7 @@ Route::post('/order-place', 'CheckoutController@order_place');
 Route::get('/checkout', 'CheckoutController@checkout');
 Route::post('/save-checkout', 'CheckoutController@save_checkout');
 Route::get('/payment', 'CheckoutController@payment');
+Route::get('/checkout-success', 'CheckoutController@checkout_success');
 
 //Order
 Route::get('/manage-order', 'CheckoutController@manage_order');
