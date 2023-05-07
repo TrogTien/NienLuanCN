@@ -3,20 +3,7 @@
     
 <section id="cart_items">
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-              <li><a href="#">Home</a></li>
-              <li class="active">Check out</li>
-            </ol>
-        </div><!--/breadcrums-->
-
-        
-            
-
-        <div class="register-req">
-            <p>Hãy đăng nhập để thanh toán giỏ hàng</p>
-        </div><!--/register-req-->
-
+   
         <div class="shopper-informations">
             <div class="row">
                 

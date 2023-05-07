@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use Cart;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 

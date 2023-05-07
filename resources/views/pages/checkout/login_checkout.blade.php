@@ -11,11 +11,8 @@
                         {{ csrf_field() }}
                         <input type="email" name="email" placeholder="Email" />
                         <input type="password" name="password" placeholder="Password" />
-                        <span>
-                            <input type="checkbox" class="checkbox"> 
-                            Ghi  nhớ đăng nhập
-                        </span>
-                        <button type="submit" class="btn btn-default">Login</button>
+                        
+                        <button type="submit" class="btn btn-default">Đăng nhập</button>
                     </form>
                 </div><!--/login form-->
             </div>

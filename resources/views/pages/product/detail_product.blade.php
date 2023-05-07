@@ -22,9 +22,9 @@
                     <label>Quantity:</label>
                     <input name="quantity" type="number" min="1" value="1" />
                     <input name="product_id_hidden" type="hidden" value="{{$value->product_id}}" />
-                    <button type="submit" class="btn btn-fefault cart">
+                    <button type="submit" class="btn btn-default cart">
                         <i class="fa fa-shopping-cart"></i>
-                        Add to cart
+                        Thêm giỏ hàng
                     </button>
                 </span>
             </form>
@@ -76,7 +76,12 @@
                                 <img src="{{URL::to('public/uploads/product/'.$relate->product_image)}}" alt="" />
                                 <h2>{{$relate->product_price}} $</h2>
                                 <p>{{$relate->product_name}}</p>
-                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                <form action="{{URL::to('/save-cart')}}" method="POST">
+                                    {{ csrf_field() }}
+                                    <input name="quantity" type="hidden" value="1" />
+                                    <input name="product_id_hidden" type="hidden" value="{{$relate->product_id}}" />
+                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                </form>                            
                             </div>
                         </div>
                     </div>

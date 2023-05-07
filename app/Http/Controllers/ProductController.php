@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use Carbon\Carbon;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
@@ -159,6 +158,7 @@ class ProductController extends Controller
         $related_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->where('tbl_category_product.category_id', $category_id)
+        ->where('tbl_product.product_status',1)
         ->whereNotIn('tbl_product.product_id',[$productid])
         ->get();
 
