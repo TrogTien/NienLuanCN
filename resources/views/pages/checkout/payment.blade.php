@@ -3,12 +3,7 @@
     
 <section id="cart_items">
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-              <li><a href="{{URL::to('/')}}">Trang chủ</a></li>
-              <li class="active">Thanh toán giỏ hàng</li>
-            </ol>
-        </div><!--/breadcrums-->
+    
 
 
         
@@ -76,10 +71,10 @@
             {{ csrf_field() }}
             <div class="payment-options">
                     <span>
-                        <label><input name="payment_option" value="chuyen_khoan" type="checkbox"> Chuyển khoản</label>
+                        <label><input name="payment_option" value="chuyen_khoan" type="radio"> Chuyển khoản</label>
                     </span>
                     <span>
-                        <label><input name="payment_option" value="tien_mat" type="checkbox"> Thanh toán tiền mặt</label>
+                        <label><input name="payment_option" value="tien_mat" type="radio"> Thanh toán tiền mặt</label>
                     </span>
                     <input type="submit" value="Đặt hàng" class="btn btn-primary btn-sm">
             </div>
