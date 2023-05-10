@@ -35,11 +35,9 @@
               <td>{{ $order->order_status}}</td>
               <td>
                 <a href="{{URL::to('/view-order/'.$order->order_id)}}" class="active" ui-toggle-class="">
-                  <i class="fa fa-pencil text-success text-active"></i>
+                  <i class="fa fa-eye text-success text-active"></i>
                 </a>
-                <a href="{{URL::to('/delete-order/'.$order->order_id)}}" onclick="return confirm('Bạn có muốn xóa không?')">
-                  <i class="fa fa-times text-danger text"></i>
-                </a>
+                
               </td>
             </tr>
             @endforeach
